@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+  # Contenedor para el backend
+  backend:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000" # Mapea el puerto del contenedor al host
+    environment:
+      - MYSQL_HOST=db
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=example
+      - MYSQL_DATABASE=memoria_magica
+    depends_on:
+      db:
+        condition: service_healthy # Asegurarse que el backend se inicie después de MySQL
+    networks:
+      - app-network
+
+  # Contenedor para el frontend
+  frontend:
+    build:
+      context: ./public
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80" # Mapea el puerto del contenedor al host
+    networks:
+      - app-network
+
+  # Contenedor para la base de datos MySQL
+  db:
+    image: mysql:8.0
+    container_name: mysql_container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example # Contraseña del usuario root
+      MYSQL_DATABASE: memoria_magica # Base de datos inicial
+    ports:
+      - "3306:3306" # Mapea el puerto del contenedor al host
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-pexample"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+# Define una red compartida para los servicios
+networks:
+  app-network:
+    driver: bridge
+
+# Define volúmenes persistentes para MySQL
+volumes:
+  db_data:

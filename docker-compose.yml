@@ -56,6 +56,6 @@ networks:
   app-network:
     driver: bridge
 
-# Define volúmenes persistentes para MySQL
+# Define volúmenes persistentes para MySQL Test
 volumes:
   db_data:

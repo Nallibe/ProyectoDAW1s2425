@@ -47,6 +47,7 @@ Este comando construirá las imágenes para el frontend, backend y MySQL.
 Iniciará los contenedores definidos en docker-compose.yml.
 
 ##**4. Verificar los servicios**
+
 Frontend: Disponible en http://localhost:8080.
 Backend: Disponible en http://localhost:3000.
 MySQL: Disponible en localhost:3306

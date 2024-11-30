@@ -1,6 +1,7 @@
 # **Memoria Mágica**
 
-Este proyecto es una aplicación que combina un frontend estático con un backend desarrollado en Node.js y una base de datos MySQL. Utiliza Docker para facilitar su despliegue y ejecución.
+Juego de cartas de memoria que permite a los jugadores de todas las edades ejercitar su memoria mientras se divierten, se trata de un proyecto creado con el objetivo de trabajar destrezas muy importantes en el proceso de aprendizaje como la memoria, la atención, la concentración, el respeto, la tolerancia a la frustración, y la emoción, a través de un formato lúdico que utiliza objetos cotidianos como punto de referencia.
+Este proyecto está desarrollado en lenguaje JavaScript, html, css.
 
 ---
 
@@ -16,26 +17,26 @@ Antes de comenzar, asegúrate de tener instalados los siguientes programas:
 ## **Estructura del proyecto**
 
 ```plaintext
-/project-root
-|-- /backend             # Backend en Node.js (Express)
-|   |-- Dockerfile       # Dockerfile del backend
-|   |-- package.json
-|   |-- server.js
-|-- /frontend            # Frontend estático (HTML, CSS, JS)
-|   |-- Dockerfile       # Dockerfile del frontend
+/ProyectoDAW1s2425
+|-- Dockerfile       
+|-- package.json
+|-- server.js
+|-- index.js
+|-- /public            
+|   |-- Dockerfile     
 |   |-- index.html
-|   |-- styles.css
-|   |-- app.js
-|-- init.sql             # Script SQL para inicializar la base de datos
-|-- docker-compose.yml   # Orquestación de los contenedores
-|-- README.md            # Documentación del proyecto
+|   |-- style.css
+|   |-- script.js
+|-- init.sql            
+|-- docker-compose.yml  
+|-- README.md  
 ```
 ##**1. Clonar el repositorio**
 Primero, clona este repositorio en tu máquina local:
 
 ```bash
-git clone https://github.com/tu-usuario/memoria-magica.git
-cd memoria-magica
+git clone https://github.com/Nallibe/ProyectoDAW1s2425.git
+cd ProyectoDAW1s2425
 ```
 ##**2. Construir y ejecutar los contenedores**
 Ejecuta el siguiente comando para construir las imágenes y arrancar los contenedores:
@@ -48,7 +49,7 @@ Iniciará los contenedores definidos en docker-compose.yml.
 ##**4. Verificar los servicios**
 Frontend: Disponible en http://localhost:8080.
 Backend: Disponible en http://localhost:3000.
-MySQL: Disponible en localhost:3306 con las siguientes credenciales:
+MySQL: Disponible en localhost:3306
 
 ##**4. Detener los contenedores**
 Para detener los contenedores, usa:

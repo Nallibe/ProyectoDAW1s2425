@@ -83,13 +83,10 @@
     <button onclick="agregarComentario()">Comentario</button>
 </div>
 <button id="volverMenu" style="display: none;" onclick="volverAlMenuPrincipal()">Volver al Menú Principal</button>
-    <script src="script.js"></script>
-</body>
-
 <footer id="app-footer">
-    <button id="guia-rapida-btn">Guía Rápida</button>
+    <button id="guia-rapida-btn" onclick="mostrarGuia()">Guía Rápida</button>
   </footer>
-  <div id="guia-rapida" style="display: none;">
+  <div id="guia-rapida" class="oculto">
     <div class="guia-contenido">
       <h2>Guía Rápida</h2>
       <p>Memoria Mágica es un juego donde debes encontrar parejas de cartas. Sigue estos pasos:</p>
@@ -98,8 +95,14 @@
         <li>Haz clic en las cartas para descubrirlas.</li>
         <li>Empareja las cartas idénticas antes de que se acabe el tiempo.</li>
       </ol>
-      <button id="cerrar-guia">Cerrar</button>
+      <button id="cerrar-guia" onclick="cerrarGuia()">Cerrar</button>
     </div>
   </div>    
+
+    <script src="script.js"></script>
+
+</body>
+
+
   
 </html>

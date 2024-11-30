@@ -61,17 +61,17 @@ const ocultarDivs = () => {
     document.querySelector('div[id^="retos"]'),
     document.querySelector('div[id^="seleccion-retos"]')
   ];
-if (divsAEliminar.length > 0) {
-  divsAEliminar.forEach(div => {
-    if (div) {
-      div.classList.add('oculto');
-    }
-  });
-}
-limpiarJuego();
+  if (divsAEliminar.length > 0) {
+    divsAEliminar.forEach(div => {
+      if (div) {
+        div.classList.add('oculto');
+      }
+    });
+  }
+  limpiarJuego();
 }
 function volverMenuUsuario() {
-  
+
   ocultarDivs();
   // Eliminar botones de volver que se hayan creado
   const botonesVolver = document.querySelectorAll('button[id="volver-menu-button"]');
@@ -206,8 +206,8 @@ let puntuacion;
 // Generar las cartas de memoria con iconos relacionados con magia y fantasía
 function generarCartas(dificultad) {
   const iconos = [
-    '💎', '🔮', '✨', '🧙‍♂️', '🧩', 
-    '🪄', '🦄', '🪙', '🌟', '🦋', 
+    '💎', '🔮', '✨', '🧙‍♂️', '🧩',
+    '🪄', '🦄', '🪙', '🌟', '🦋',
     '🐉', '🎩', '⚡', '🦊', '🌙'
   ]; // Lista de iconos mágicos y fantásticos
   let cartas = [];
@@ -325,9 +325,9 @@ function terminarJuego(tiempoJuego, puntuacion) {
     .then(response => response.json())
     .then(data => {
       if (data.success) {
-              // Reiniciar la puntuación
-              puntuacion = 0;
-              document.cookie = `idRetoSeleccionado=${idReto}; path=/;`;      
+        // Reiniciar la puntuación
+        puntuacion = 0;
+        document.cookie = `idRetoSeleccionado=${idReto}; path=/;`;
         // Verificar puntuación acumulada
         fetch(`http://localhost:3000/verificar-puntuacion-retos/${idUsuario}`)
           .then(response => response.json())
@@ -545,7 +545,7 @@ function mostrarRetos() {
     .catch(error => {
       console.error('Error al verificar puntuaciones de retos:', error);
     });
-}     
+}
 
 // Función para seleccionar un reto
 function seleccionarReto(idReto) {
@@ -667,16 +667,16 @@ function mostrarEstadisticas() {
     return;
   }
   let estadisticasDiv = document.getElementById('estadisticas-div');
- // Cambiar const a let
- if (estadisticasDiv) {
-   estadisticasDiv.innerHTML = ''; // Limpia el contenido
-  estadisticasDiv.classList.remove('oculto');
- } else {
-   // Si no existe, créalo
-   estadisticasDiv = document.createElement('div');
-   estadisticasDiv.id = 'estadisticas-div'; // Asigna un id único
-   document.body.appendChild(estadisticasDiv); // Agrega el div al body
- }
+  // Cambiar const a let
+  if (estadisticasDiv) {
+    estadisticasDiv.innerHTML = ''; // Limpia el contenido
+    estadisticasDiv.classList.remove('oculto');
+  } else {
+    // Si no existe, créalo
+    estadisticasDiv = document.createElement('div');
+    estadisticasDiv.id = 'estadisticas-div'; // Asigna un id único
+    document.body.appendChild(estadisticasDiv); // Agrega el div al body
+  }
 
   crearBotonVolver();
   fetch(`http://localhost:3000/estadisticas/${idUsuario}`)
@@ -794,6 +794,17 @@ function agregarComentario() {
     })
     .catch(error => console.error('Error:', error));
 }
-
+const mostrarGuia = () => {
+  let guiaDiv = document.getElementById('guia-rapida');
+  if (guiaDiv) {
+    guiaDiv.classList.remove('oculto');
+  }
+}
+const cerrarGuia = () => {
+  let guiaDiv = document.getElementById('guia-rapida');
+  if (guiaDiv) {
+    guiaDiv.classList.add('oculto');
+  }
+}
 // Llamar a la función de actualización del menú cuando se carga la página
 window.onload = mostrarMenu;

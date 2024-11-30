@@ -52,7 +52,7 @@ Frontend: Disponible en http://localhost:8080.
 Backend: Disponible en http://localhost:3000.
 MySQL: Disponible en localhost:3306
 
-##**4. Detener los contenedores**
+##**5. Detener los contenedores**
 Para detener los contenedores, usa:
 ```bash
 docker-compose down

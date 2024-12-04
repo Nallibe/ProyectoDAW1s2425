@@ -454,7 +454,6 @@ function desbloquearSiguienteReto(idReto) {
 
   console.log(`Desbloqueando reto siguiente: ${siguienteReto}`);
 }
-//funcion mostrar retos
 // Función mostrar retos
 function mostrarRetos() {
   ocultarDivs();

@@ -1,22 +1,30 @@
 
-/* Estilos generales */
+/* Fondo con degradado mágico */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
     color: #333;
     text-align: center;
     padding: 20px;
+    background: linear-gradient(120deg, #fff2a8, #FF69B4, #FFFFFF); /* Degradado suave */
+    background-size: 400% 400%; /* Movimiento del degradado */
+    animation: backgroundAnimation 12s ease infinite; /* Animación del degradado */
+    margin: 0;
+    height: 100vh; /* Asegura que el body ocupe el 100% de la altura de la ventana */
+    overflow: hidden; /* Evita el desplazamiento en el body */
 }
-/* Fondo con degradado mágico */
-body {
-  font-family: Arial, sans-serif;
-  background: linear-gradient(120deg, #fff2a8, #FF69B4, #FFFFFF); /* Degradado suave */
-  background-size: 400% 400%; /* Movimiento del degradado */
-  animation: backgroundAnimation 12s ease infinite; /* Animación del degradado */
-  margin: 0;
-  padding: 0;
-  overflow: hidden; /* Evita scroll por elementos decorativos */
-  color: #333;
+
+#contenido-principal {
+  height: 100vh; /* Asegura que el contenedor principal ocupe el 100% de la altura de la ventana */
+  overflow-y: auto; /* Permite el desplazamiento vertical */
+  padding: 20px; /* Espaciado interno */
+  box-sizing: border-box; /* Incluye el padding en el cálculo del tamaño */
+}
+
+#modoJuego {
+  display: flex;
+  flex-direction: column; /* Organiza el contenido en una columna */
+  justify-content: center; /* Centra el contenido verticalmente */
 }
 
 /* Animación para el fondo degradado */
@@ -160,23 +168,13 @@ button span {
 }
 
 footer {
-  background: linear-gradient(90deg, #e777ad, #d385c2, #fffec2); /* Degradado animado */
-  background-size: 300% 100%; /* Ampliar el fondo para el efecto */
-  color: #fff; /* Texto blanco */
+  background: linear-gradient(90deg, #e777ad, #d385c2, #fffec2);
+  color: #fff;
   text-align: center;
-  padding: 10px 0;
-  font-size: 0.9em;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  animation: gradientFooter 5s infinite; /* Animación infinita */
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-}
-
-@keyframes gradientFooter {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  padding: 10px 0; /* Ajusta el padding según sea necesario */
+  width: 100%; /* Asegura que el footer ocupe todo el ancho */
+  position: relative; /* Asegura que el footer esté en el flujo del documento */
+  bottom: 0; /* Asegura que el footer esté al final */
 }
 
 #guia-rapida {
@@ -192,30 +190,28 @@ footer {
 }
 
 .guia-contenido {
-  background: white;
+  background-color: rgba(252, 183, 245, 0.8);
   padding: 20px;
   border-radius: 8px;
   text-align: center;
 }
 #comentarios-lista {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#comentarios-lista ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-#comentarios-lista li {
-    margin: 5px 0;
+#lista-comentarios {
+  background-color: rgba(252, 183, 245, 0.8);
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
 }
 .oculto {
   display: none !important;

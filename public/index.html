@@ -11,6 +11,7 @@
     <h1>Memoria Mágica</h1>
     <!-- Partículas mágicas -->
     <body>
+        <div id="contenido-principal">
         <div class="diamante" style="top: 10%; left: 15%;"></div>
         <div class="diamante" style="top: 30%; left: 50%;"></div>
         <div class="diamante" style="top: 70%; left: 20%;"></div>
@@ -21,9 +22,7 @@
         <div class="diamante" style="top: 40%; left: 90%;"></div>
         <div class="diamante" style="top: 80%; left: 30%;"></div>
         <div class="diamante" style="top: 70%; left: 70%;"></div>
-    </body>
     
- 
     <!-- Menú de navegación -->
     <div id="menu">
         <button id="registro" onclick="mostrarRegistro()">Registrarse</button>
@@ -68,15 +67,14 @@
         <button onclick="registrarUsuario()">Registrarse</button>
         <button onclick="mostrarLogin()">Iniciar sesión</button>
     </div>
-
-    <!-- Área de Juego -->
+        <!-- Área de Juego -->
+    <div id="game-board"></div>
     <div id="modoJuego" style="display:block;">
         <div id="seleccionar-dificultad">
             <button onclick="seleccionarDificultad('bajo')">Bajo</button>
             <button onclick="seleccionarDificultad('medio')">Medio</button>
             <button onclick="seleccionarDificultad('alto')">Alto</button>
         </div>          
-        <div id="game-board"></div>
     </div>
 <!-- Sección de Comentarios -->
 <div id="comentarios-section" style="display: block;">
@@ -84,13 +82,8 @@
     <textarea id="comentarioTexto" placeholder="Escribe tu comentario aquí..."></textarea>
     <button onclick="agregarComentario()">Comentario</button>
 </div>
-<div id="comentarios-lista" class="oculto">
-    <h2>Comentarios</h2>
-    <ul id="lista-comentarios"></ul>
-    <button onclick="cerrarComentarios()">Cerrar</button>
-</div>
-<button id="volverMenu" style="display: none;" onclick="volverAlMenuPrincipal()">Volver al Menú Principal</button>
 <footer id="app-footer">
+    <button id="volverMenu" style="display: none;" onclick="volverAlMenuPrincipal()">Volver al Menú Principal</button>
     <button id="guia-rapida-btn" onclick="mostrarGuia()">Guía Rápida</button>
     <button id="ver-comentarios-btn" onclick="mostrarComentarios()">Ver Comentarios</button>
     <p style="text-align: left;">© 2024 Memoria Mágica</p>
@@ -107,6 +100,11 @@
       <button id="cerrar-guia" onclick="cerrarGuia()">Cerrar</button>
     </div>
   </div>    
+  <div id="comentarios-lista" class="oculto">
+    <h2>Comentarios</h2>
+    <ul id="lista-comentarios"></ul>
+    <button onclick="cerrarComentarios()">Cerrar</button>
+</div>
   <script src="script.js"></script>
 </body>
 </html>

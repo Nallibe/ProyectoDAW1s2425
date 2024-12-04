@@ -794,13 +794,13 @@ function agregarComentario() {
     })
     .catch(error => console.error('Error:', error));
 }
-const mostrarGuia = () => {
+function mostrarGuia() {
   let guiaDiv = document.getElementById('guia-rapida');
   if (guiaDiv) {
     guiaDiv.classList.remove('oculto');
   }
 }
-const cerrarGuia = () => {
+function cerrarGuia() {
   let guiaDiv = document.getElementById('guia-rapida');
   if (guiaDiv) {
     guiaDiv.classList.add('oculto');

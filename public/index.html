@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Memoria Mágica</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="/favicon.png">
 </head>
 <body>   
+    <h1>Memoria Mágica</h1>
     <!-- Partículas mágicas -->
     <body>
         <div class="diamante" style="top: 10%; left: 15%;"></div>
@@ -82,10 +84,17 @@
     <textarea id="comentarioTexto" placeholder="Escribe tu comentario aquí..."></textarea>
     <button onclick="agregarComentario()">Comentario</button>
 </div>
+<div id="comentarios-lista" class="oculto">
+    <h2>Comentarios</h2>
+    <ul id="lista-comentarios"></ul>
+    <button onclick="cerrarComentarios()">Cerrar</button>
+</div>
 <button id="volverMenu" style="display: none;" onclick="volverAlMenuPrincipal()">Volver al Menú Principal</button>
 <footer id="app-footer">
     <button id="guia-rapida-btn" onclick="mostrarGuia()">Guía Rápida</button>
-  </footer>
+    <button id="ver-comentarios-btn" onclick="mostrarComentarios()">Ver Comentarios</button>
+    <p style="text-align: left;">© 2024 Memoria Mágica</p>
+</footer>
   <div id="guia-rapida" class="oculto">
     <div class="guia-contenido">
       <h2>Guía Rápida</h2>
@@ -93,7 +102,7 @@
       <ol>
         <li>Selecciona un nivel de dificultad.</li>
         <li>Haz clic en las cartas para descubrirlas.</li>
-\       <li>Empareja las cartas idénticas en el menor tiempo posible.</li>
+      <li>Empareja las cartas idénticas en el menor tiempo posible.</li>
       </ol>
       <button id="cerrar-guia" onclick="cerrarGuia()">Cerrar</button>
     </div>

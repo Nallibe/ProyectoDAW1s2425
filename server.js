@@ -14,9 +14,9 @@ app.use(cors({
 
 // Configuración de la base de datos MySQL
 const db = mysql.createConnection({
-    host: 'db',
+    host: 'localhost',
     user: 'root',
-    password: 'example',
+    password: '',
     database: 'memoria_magica'
 });
 
@@ -88,28 +88,6 @@ app.post('/registrar-usuario', (req, res) => {
       return res.status(200).json({ success: true, message: 'Usuario registrado con éxito' });
     });
   });
-});
-
-
-// Ruta para agregar un comentario
-app.post('/comentarios', (req, res) => {
-  const { comentario, idUsuario } = req.body;
-
-  // Determinar si idUsuario tiene un valor o es NULL
-  const usuarioId = idUsuario ? idUsuario : null;
-
-  db.query(
-    'INSERT INTO comentarios (comentario, idUsuario, fecha) VALUES (?, ?, NOW())',
-    [comentario, usuarioId],
-    (err) => {
-      if (err) {
-        console.error("Error al agregar el comentario:", err);
-        res.status(500).json({ success: false, message: 'Error al agregar el comentario' });
-        return;
-      }
-      res.status(200).json({ success: true, message: 'Comentario agregado con éxito' });
-    }
-  );
 });
 
 // Ruta para guardar las estadísticas del juego
@@ -289,6 +267,33 @@ app.get('/verificar-puntuacion-retos/:idUsuario', (req, res) => {
       puntuacionReto3: results[0].puntuacionReto3 || 0
     });
   });
+});
+// Ruta para agregar un comentario
+app.post('/comentarios', (req, res) => {
+  const { comentario, idUsuario } = req.body;
+
+  db.query(
+      'INSERT INTO comentarios (comentario, idUsuario, fecha) VALUES (?, ?, NOW())',
+      [comentario, idUsuario],
+      (err) => {
+          if (err) {
+              console .error('Error al añadir comentario:', err);
+              return res.status(500).json({ success: false, message: 'Error al añadir comentario' });
+          }
+          res.status(200).json({ success: true, message: 'Comentario añadido con éxito' });
+      }
+  );
+});
+
+// Ruta para obtener todos los comentarios
+app.get('/comentarios', (req, res) => {
+    db.query('SELECT comentario, fecha FROM comentarios', (err, results) => {
+        if (err) {
+            console.error('Error al obtener comentarios:', err);
+            return res.status(500).json({ success: false, message: 'Error al obtener comentarios' });
+        }
+        res.status(200).json({ success: true, comentarios: results });
+    });
 });
 
 // Iniciar el servidor

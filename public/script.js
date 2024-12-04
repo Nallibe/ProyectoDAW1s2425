@@ -105,7 +105,7 @@ function mostrarLogin() {
   document.getElementById("loginForm").style.display = "block";
   document.getElementById("registroForm").style.display = "none";
   document.getElementById("menu").style.display = "none";
-  document.getElementById("volverMenu").style.display = "block"; // Mostrar botón "Volver al Menú Principal"
+  document.getElementById("volverMenu").style.display = "inline"; // Mostrar botón "Volver al Menú Principal"
 }
 
 // Mostrar formulario de registro
@@ -115,7 +115,7 @@ function mostrarRegistro() {
   document.getElementById("registroForm").style.display = "block";
   document.getElementById("loginForm").style.display = "none";
   document.getElementById("menu").style.display = "none";
-  document.getElementById("volverMenu").style.display = "block"; // Mostrar botón "Volver al Menú Principal"
+  document.getElementById("volverMenu").style.display = "inline"; // Mostrar botón "Volver al Menú Principal"
 }
 
 // Función para iniciar sesión
@@ -194,6 +194,7 @@ function mostrarJuego() {
   document.getElementById("seleccionar-dificultad").style.display = "inline";
   document.getElementById("game-board").innerHTML = ''; // Limpiar el tablero de juego
   document.getElementById("game-board").style.display = "none"; // Ocultar el tablero hasta que se elija dificultad
+  document.getElementById("volverMenu").style.display = "inline"; // Mostrar botón "Volver al Menú Principal
 }
 // Variables globales para medir el tiempo
 let tiempoInicio;
@@ -768,38 +769,80 @@ function mostrarCompetencias() {
     })
     .catch(error => console.error('Error al obtener competencias:', error));
 }
+
 // Agregar comentario
 function agregarComentario() {
   const idUsuario = getCookie("idUsuario") || null; // Establece null si el usuario no está registrado
   const comentario = document.getElementById("comentarioTexto").value;
 
   if (!comentario) {
-    alert("Por favor, escribe un comentario.");
-    return;
+      alert("Por favor, escribe un comentario.");
+      return;
   }
 
   fetch('http://localhost:3000/comentarios', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ comentario, idUsuario })
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ comentario, idUsuario })
   })
-    .then(response => response.json())
-    .then(data => {
+  .then(response => response.json())
+  .then(data => {
       if (data.success) {
-        alert('Comentario agregado con éxito');
-        document.getElementById("comentarioTexto").value = ""; // Limpia el campo de texto
+          alert('Comentario añadido con éxito');
+          document.getElementById("comentarioTexto").value = ""; // Limpia el campo de texto
+          mostrarComentarios(); // Actualiza la lista de comentarios
       } else {
-        alert('Error al agregar el comentario');
+          alert('Error al añadir el comentario');
       }
-    })
-    .catch(error => console.error('Error:', error));
+  })
+  .catch(error => console.error('Error:', error));
 }
+// Función para mostrar los comentarios
+function mostrarComentarios() {
+    ocultarDivs(); // Oculta otros divs
+
+    const comentariosLista = document.getElementById('comentarios-lista');
+    comentariosLista.classList.remove('oculto'); // Muestra la sección de comentarios
+
+    // Limpiar la lista de comentarios
+    const listaComentarios = document.getElementById('lista-comentarios');
+    listaComentarios.innerHTML = ''; // Limpia la lista
+
+    // Obtener todos los comentarios desde el servidor
+    fetch(`http://localhost:3000/comentarios`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error en la respuesta del servidor: ' + response.status);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.success) {
+                data.comentarios.forEach(comentario => {
+                    const li = document.createElement('li');
+                    li.textContent = `${comentario.fecha}: ${comentario.comentario}`;
+                    listaComentarios.appendChild(li);
+                });
+            } else {
+                alert('Error al obtener los comentarios: ' + data.message);
+            }
+        })
+        .catch(error => console.error('Error al obtener comentarios:', error));
+}
+
+// Función para cerrar la lista de comentarios
+function cerrarComentarios() {
+  const comentariosLista = document.getElementById('comentarios-lista');
+  comentariosLista.classList.add('oculto'); // Oculta la sección de comentarios
+}
+//función mostrar la guía
 function mostrarGuia() {
   let guiaDiv = document.getElementById('guia-rapida');
   if (guiaDiv) {
     guiaDiv.classList.remove('oculto');
   }
 }
+//funcion cierre de guía
 function cerrarGuia() {
   let guiaDiv = document.getElementById('guia-rapida');
   if (guiaDiv) {

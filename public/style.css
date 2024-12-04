@@ -158,6 +158,27 @@ button span {
   background-color: white;
   transform: rotateY(180deg);
 }
+
+footer {
+  background: linear-gradient(90deg, #e777ad, #d385c2, #fffec2); /* Degradado animado */
+  background-size: 300% 100%; /* Ampliar el fondo para el efecto */
+  color: #fff; /* Texto blanco */
+  text-align: center;
+  padding: 10px 0;
+  font-size: 0.9em;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  animation: gradientFooter 5s infinite; /* Animación infinita */
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes gradientFooter {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 #guia-rapida {
   position: fixed;
   top: 0;
@@ -175,6 +196,26 @@ button span {
   padding: 20px;
   border-radius: 8px;
   text-align: center;
+}
+#comentarios-lista {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+}
+
+#comentarios-lista ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#comentarios-lista li {
+    margin: 5px 0;
 }
 .oculto {
   display: none !important;

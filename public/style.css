@@ -1,162 +1,243 @@
-/* Estilos generales */
+/* Fondo con degradado mágico */
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f9;
   color: #333;
   text-align: center;
   padding: 20px;
+  background: linear-gradient(120deg, #fff2a8, #FF69B4, #FFFFFF); /* Degradado suave */
+  background-size: 400% 400%; /* Movimiento del degradado */
+  animation: backgroundAnimation 12s ease infinite; /* Animación del degradado */
+  margin: 0;
+  height: 100vh; /* Asegura que el body ocupe el 100% de la altura de la ventana */
+  flex: 1; /* Permite que el contenido principal ocupe el espacio disponible */
+  overflow-y: auto; /* Permite el desplazamiento vertical */
+  max-height: 100vh; /* Altura máxima para el contenedor principal */
+  box-sizing: border-box; /* Incluye el padding en el cálculo del tamaño */
 }
-/* Fondo con degradado mágico */
-body {
-font-family: Arial, sans-serif;
-background: linear-gradient(120deg, #fff2a8, #FF69B4, #FFFFFF); /* Degradado suave */
-background-size: 400% 400%; /* Movimiento del degradado */
-animation: backgroundAnimation 12s ease infinite; /* Animación del degradado */
-margin: 0;
-padding: 0;
-overflow: hidden; /* Evita scroll por elementos decorativos */
-color: #333;
+#modoJuego {
+  display: flex;
+  flex-direction: column; /* Organiza el contenido en una columna */
+  justify-content: center; /* Centra el contenido verticalmente */
 }
 /* Animación para el fondo degradado */
 @keyframes backgroundAnimation {
-0% { background-position: 0% 50%; }
-50% { background-position: 100% 50%; }
-100% { background-position: 0% 50%; }
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
+
 /* Diamantes animados */
 .diamante {
-position: absolute;
-width: 40px;
-height: 40px;
-background: rgba(255, 255, 255, 0.5); /* Color base del diamante */
-clip-path: polygon(50% 0%, 100% 25%, 75% 100%, 25% 100%, 0% 25%); /* Forma de diamante */
-animation: moveDiamante 15s linear infinite; /* Movimiento infinito */
-box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.5); /* Brillo */
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.5); /* Color base del diamante */
+  clip-path: polygon(50% 0%, 100% 25%, 75% 100%, 25% 100%, 0% 25%); /* Forma de diamante */
+  animation: moveDiamante 15s linear infinite; /* Movimiento infinito */
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.5); /* Brillo */
 }
+
 /* Animación de movimiento de los diamantes */
 @keyframes moveDiamante {
-0% {
-    transform: translateY(100vh) scale(0.5); /* Comienza desde abajo */
-    opacity: 0;
+  0% {
+      transform: translateY(100vh) scale(0.5); /* Comienza desde abajo */
+      opacity: 0;
+  }
+  50% {
+      opacity: 1; /* Aparece en el centro */
+  }
+  100% {
+      transform: translateY(-10vh) scale(1); /* Se mueve hacia arriba */
+      opacity: 0; /* Desvanece */
+  }
 }
-50% {
-    opacity: 1; /* Aparece en el centro */
-}
-100% {
-    transform: translateY(-10vh) scale(1); /* Se mueve hacia arriba */
-    opacity: 0; /* Desvanece */
-}
-}
+
 /* Genera diferentes tamaños y velocidades */
 .diamante:nth-child(odd) {
-animation-duration: 10s;
-animation-delay: -2s;
-width: 30px;
-height: 30px;
+  animation-duration: 10s;
+  animation-delay: -2s;
+  width: 30px;
+  height: 30px;
 }
 .diamante:nth-child(even) {
-animation-duration: 12s;
-animation-delay: -4s;
-width: 50px;
-height: 50px;
+  animation-duration: 12s;
+  animation-delay: -4s;
+  width: 50px;
+  height: 50px;
 }
+
+
 h1 {
-  color: #4CAF50;
+    color: #4CAF50;
 }
+
 form {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
+
 input {
-  padding: 10px;
-  margin: 10px 0;
-  width: 80%;
-  max-width: 300px;
+    padding: 10px;
+    margin: 10px 0;
+    width: 80%;
+    max-width: 300px;
 }
+
 button {
-padding: 12px 24px;
-font-size: 16px;
-font-weight: bold;
-color: white;
-background: rgba(0, 0, 0, 0.6); /* Fondo semitransparente */
-border: 2px solid transparent; /* Borde transparente inicialmente */
-border-radius: 12px; /* Bordes redondeados */
-transition: all 0.3s ease-in-out;
-cursor: pointer;
-position: relative; /* Para el efecto brillante */
-overflow: hidden; /* Evita que los efectos salgan del botón */
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background: rgba(0, 0, 0, 0.6); /* Fondo semitransparente */
+  border: 2px solid transparent; /* Borde transparente inicialmente */
+  border-radius: 12px; /* Bordes redondeados */
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  position: relative; /* Para el efecto brillante */
+  overflow: hidden; /* Evita que los efectos salgan del botón */
 }
+
 button:hover {
-background: linear-gradient(90deg, #FF69B4, #FFD700); /* Degradado brillante */
-color: #333;
-border: 2px solid #FFD700; /* Resalta el borde */
-box-shadow: 0 0 15px rgba(255, 215, 0, 0.8), 0 0 25px rgba(255, 105, 180, 0.6); /* Efecto de brillo */
+  background: linear-gradient(90deg, #FF69B4, #FFD700); /* Degradado brillante */
+  color: #333;
+  border: 2px solid #FFD700; /* Resalta el borde */
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.8), 0 0 25px rgba(255, 105, 180, 0.6); /* Efecto de brillo */
 }
+
 button::before {
-content: '';
-position: absolute;
-top: -50%;
-left: -50%;
-width: 200%;
-height: 200%;
-background: radial-gradient(circle, rgba(255, 255, 255, 0.4), transparent);
-transform: scale(0);
-transition: transform 0.5s ease;
-z-index: 0; /* Coloca el efecto detrás del texto */
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.4), transparent);
+  transform: scale(0);
+  transition: transform 0.5s ease;
+  z-index: 0; /* Coloca el efecto detrás del texto */
 }
+
 button:hover::before {
-transform: scale(1); /* Expande el efecto brillante */
+  transform: scale(1); /* Expande el efecto brillante */
 }
+
 button span {
-position: relative;
-z-index: 1; /* Asegura que el texto esté encima del brillo */
+  position: relative;
+  z-index: 1; /* Asegura que el texto esté encima del brillo */
 }
+
+
 /* Área de juego */
 #game-board {
-display: flex !important;
-flex-wrap: wrap; /* Permitir que las cartas pasen a la siguiente fila */
-justify-content: center; /* Centrar las filas horizontalmente */
-gap: 20px; /* Espacio uniforme entre las cartas */
-width: 60%; /* Ancho completo */
-max-width: 400px; /* Máximo ancho del tablero */
-margin: auto; /* Centra el tablero horizontalmente */
-margin-top: 20px;
-box-sizing: border-box; /* Asegura que los márgenes y bordes se incluyan en el ancho */
+  display: flex !important;
+  flex-wrap: wrap; /* Permitir que las cartas pasen a la siguiente fila */
+  justify-content: center; /* Centrar las filas horizontalmente */
+  gap: 20px; /* Espacio uniforme entre las cartas */
+  width: 60%; /* Ancho completo */
+  max-width: 400px; /* Máximo ancho del tablero */
+  margin: auto; /* Centra el tablero horizontalmente */
+  margin-top: 20px;
+  box-sizing: border-box; /* Asegura que los márgenes y bordes se incluyan en el ancho */
 }
+
 .card {
-width: calc((100% / 3) - 10px); /* Cada carta ocupa un tercio del ancho, restando el espacio del gap */
-height: 80px; /* Altura fija para mantener proporción */
-background-color: lightgray;
-display: flex; /* Centrar contenido dentro de la carta */
-justify-content: center;
-align-items: center;
-font-size: 2em;
-cursor: pointer;
-border: 2px solid #ccc;
-border-radius: 8px;
-transition: transform 0.3s;
-box-sizing: border-box; /* Incluye el borde en el cálculo del tamaño */
+  width: calc((100% / 3) - 10px); /* Cada carta ocupa un tercio del ancho, restando el espacio del gap */
+  height: 80px; /* Altura fija para mantener proporción */
+  background-color: lightgray;
+  display: flex; /* Centrar contenido dentro de la carta */
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  cursor: pointer;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  transition: transform 0.3s;
+  box-sizing: border-box; /* Incluye el borde en el cálculo del tamaño */
 }
+
 .card.flipped {
-background-color: white;
-transform: rotateY(180deg);
+  background-color: white;
+  transform: rotateY(180deg);
 }
+
+footer {
+  background: linear-gradient(90deg, #e777ad, #d385c2, #fffec2);
+  color: #fff;
+  text-align: center;
+  padding: 10px 0; /* Ajusta el padding según sea necesario */
+  width: 100%; /* Asegura que el footer ocupe todo el ancho */
+  position: relative; /* Asegura que el footer esté en el flujo del documento */
+  bottom: 0; /* Asegura que el footer esté al final */
+}
+
 #guia-rapida {
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background-color: rgba(0, 0, 0, 0.8);
-display: flex;
-justify-content: center;
-align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
 .guia-contenido {
-background: white;
-padding: 20px;
-border-radius: 8px;
-text-align: center;
+  background-color: rgba(252, 183, 245, 0.8);
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+#comentarios-lista {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#lista-comentarios {
+  background-color: rgba(252, 183, 245, 0.8);
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
 }
 .oculto {
-display: none !important;
+  display: none !important;
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 768px) {
+  #game-board {
+      width: 100%;
+      gap: 10px;
+  }
+
+  .card {
+      width: calc(50% - 10px);
+      height: 60px;
+      font-size: 1.5em;
+  }
+
+  button {
+      font-size: 14px;
+      padding: 10px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+      width: 100%;
+      height: 50px;
+      font-size: 1.2em;
+  }
+
+  button {
+      font-size: 12px;
+      padding: 8px 16px;
+  }
 }

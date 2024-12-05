@@ -5,15 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Memoria Mágica</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/png" href="/favicon.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 </head>
 <body>   
     <h1>Memoria Mágica</h1>
+    <div id="contenido-principal">
     <!-- Partículas mágicas -->
-    <body>
-        <div id="contenido-principal">
         <div class="diamante" style="top: 10%; left: 15%;"></div>
         <div class="diamante" style="top: 30%; left: 50%;"></div>
         <div class="diamante" style="top: 70%; left: 20%;"></div>
@@ -24,9 +20,9 @@
         <div class="diamante" style="top: 40%; left: 90%;"></div>
         <div class="diamante" style="top: 80%; left: 30%;"></div>
         <div class="diamante" style="top: 70%; left: 70%;"></div>
-    
+ 
     <!-- Menú de navegación -->
-    <div id="menu">
+        <div id="menu">
         <button id="registro" onclick="mostrarRegistro()">Registrarse</button>
         <button id="iniciar-sesion" onclick="mostrarLogin()">Iniciar sesión</button>
         <button id="cerrar-sesion" onclick="cerrarSesion()">Cerrar sesión</button>
@@ -34,33 +30,31 @@
         <button id="ver-retos" onclick="mostrarRetos()">Ver retos</button>
         <button id="competencias" onclick="mostrarCompetencias()">Competencias</button>
         <button id="jugar" onclick="mostrarJuego()" style="display: none;">Jugar</button>
-    </div>
-    <div id="seleccion-retos">
+        </div>
+        <div id="seleccion-retos">
         <h3>Selecciona un reto</h3>
         <div id="retos-disponibles"></div>
         <button id="comenzar-reto" onclick="iniciarReto()" style="display: none;">Comenzar Reto</button>
-    </div>
+        </div>
     
-    <!-- Información del usuario (nombre y botones de navegación) -->
-    <div id="usuario-info" style="display: none;">
+        <!-- Información del usuario (nombre y botones de navegación) -->
+        <div id="usuario-info" style="display: none;">
         <h3 id="nombre-usuario"></h3>
         <button onclick="mostrarEstadisticas()">Estadísticas</button>
         <button onclick="mostrarRetos()">Retos</button>
         <button onclick="mostrarCompetencias()">Competencias</button>
         <button onclick="cerrarSesion()">Cerrar sesión</button>
-    </div>
-
-    <!-- Formulario de Login -->
-    <div id="loginForm" style="display:none;">
+          </div>
+        <!-- Formulario de Login -->
+        <div id="loginForm" style="display:none;">
         <h2>Iniciar sesión</h2>
         <input type="email" id="emailLogin" placeholder="Email" required>
         <input type="password" id="contrasenaLogin" placeholder="Contraseña" required>
         <button onclick="iniciarSesion()">Iniciar sesión</button>
         <button onclick="mostrarRegistro()">Registrar</button>
-    </div>
-
-    <!-- Formulario de Registro -->
-    <div id="registroForm" style="display:none;">
+     </div>
+        <!-- Formulario de Registro -->
+        <div id="registroForm" style="display:none;">
         <h2>Registro</h2>
         <input type="text" id="nombreRegistro" placeholder="Nombre" required>
         <input type="text" id="apellidosRegistro" placeholder="Apellidos" required>
@@ -68,45 +62,46 @@
         <input type="password" id="contrasenaRegistro" placeholder="Contraseña" required>
         <button onclick="registrarUsuario()">Registrarse</button>
         <button onclick="mostrarLogin()">Iniciar sesión</button>
-    </div>
+     </div>
         <!-- Área de Juego -->
     <div id="game-board"></div>
-    <div id="modoJuego" style="display:block;">
+     <div id="modoJuego" style="display:block;">
         <div id="seleccionar-dificultad">
             <button onclick="seleccionarDificultad('bajo')">Bajo</button>
             <button onclick="seleccionarDificultad('medio')">Medio</button>
             <button onclick="seleccionarDificultad('alto')">Alto</button>
         </div>          
     </div>
-<!-- Sección de Comentarios -->
+ <!-- Sección de Comentarios -->
 <div id="comentarios-section" style="display: block;">
     <h2>Comentarios</h2>
     <textarea id="comentarioTexto" placeholder="Escribe tu comentario aquí..."></textarea>
     <button onclick="agregarComentario()">Comentario</button>
 </div>
-<footer id="app-footer">
-    <button id="volverMenu" style="display: none;" onclick="volverAlMenuPrincipal()">Volver al Menú Principal</button>
-    <button id="guia-rapida-btn" onclick="mostrarGuia()">Guía Rápida</button>
-    <button id="ver-comentarios-btn" onclick="mostrarComentarios()">Ver Comentarios</button>
-    <p style="text-align: left;">© 2024 Memoria Mágica</p>
+<button id="volverMenu" style="display: none;" onclick="volverAlMenuPrincipal()">Volver al Menú Principal</button>
+   <script src="script.js"></script>
+    </body>
+    <!-- Footer -->
+    <footer id="app-footer">
+        <button id="guia-rapida-btn" onclick="mostrarGuia()">Guía Rápida</button>
+        <button id="ver-comentarios-btn" onclick="mostrarComentarios()">Ver Comentarios</button>
+        <p style="text-align: left;">© 2024 Memoria Mágica</p>
+      <div id="guia-rapida" class="oculto">
+        <div class="guia-contenido">
+          <h2>Guía Rápida</h2>
+          <p>Memoria Mágica es un juego donde debes encontrar parejas de cartas. Sigue estos pasos:</p>
+          <ol>
+            <li>Selecciona un nivel de dificultad.</li>
+            <li>Haz clic en las cartas para descubrirlas.</li>
+          <li>Empareja las cartas idénticas en el menor tiempo posible.</li>
+          </ol>
+          <button id="cerrar-guia" onclick="cerrarGuia()">Cerrar</button>
+        </div>
+      </div>    
+      <div id="comentarios-lista" class="oculto">
+        <h2>Comentarios</h2>
+        <ul id="lista-comentarios"></ul>
+        <button onclick="cerrarComentarios()">Cerrar</button>
+    </div> 
 </footer>
-  <div id="guia-rapida" class="oculto">
-    <div class="guia-contenido">
-      <h2>Guía Rápida</h2>
-      <p>Memoria Mágica es un juego donde debes encontrar parejas de cartas. Sigue estos pasos:</p>
-      <ol>
-        <li>Selecciona un nivel de dificultad.</li>
-        <li>Haz clic en las cartas para descubrirlas.</li>
-      <li>Empareja las cartas idénticas en el menor tiempo posible.</li>
-      </ol>
-      <button id="cerrar-guia" onclick="cerrarGuia()">Cerrar</button>
-    </div>
-  </div>    
-  <div id="comentarios-lista" class="oculto">
-    <h2>Comentarios</h2>
-    <ul id="lista-comentarios"></ul>
-    <button onclick="cerrarComentarios()">Cerrar</button>
-</div>
-  <script src="script.js"></script>
-</body>
 </html>

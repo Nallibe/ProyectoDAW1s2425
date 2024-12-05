@@ -61,17 +61,17 @@ const ocultarDivs = () => {
     document.querySelector('div[id^="retos"]'),
     document.querySelector('div[id^="seleccion-retos"]')
   ];
-  if (divsAEliminar.length > 0) {
-    divsAEliminar.forEach(div => {
-      if (div) {
-        div.classList.add('oculto');
-      }
-    });
-  }
-  limpiarJuego();
+if (divsAEliminar.length > 0) {
+  divsAEliminar.forEach(div => {
+    if (div) {
+      div.classList.add('oculto');
+    }
+  });
+}
+limpiarJuego();
 }
 function volverMenuUsuario() {
-
+  
   ocultarDivs();
   // Eliminar botones de volver que se hayan creado
   const botonesVolver = document.querySelectorAll('button[id="volver-menu-button"]');
@@ -105,7 +105,7 @@ function mostrarLogin() {
   document.getElementById("loginForm").style.display = "block";
   document.getElementById("registroForm").style.display = "none";
   document.getElementById("menu").style.display = "none";
-  document.getElementById("volverMenu").style.display = "inline"; // Mostrar botón "Volver al Menú Principal"
+  document.getElementById("volverMenu").style.display = "block"; // Mostrar botón "Volver al Menú Principal"
 }
 
 // Mostrar formulario de registro
@@ -115,7 +115,7 @@ function mostrarRegistro() {
   document.getElementById("registroForm").style.display = "block";
   document.getElementById("loginForm").style.display = "none";
   document.getElementById("menu").style.display = "none";
-  document.getElementById("volverMenu").style.display = "inline"; // Mostrar botón "Volver al Menú Principal"
+  document.getElementById("volverMenu").style.display = "block"; // Mostrar botón "Volver al Menú Principal"
 }
 
 // Función para iniciar sesión
@@ -190,6 +190,7 @@ document.addEventListener("DOMContentLoaded", actualizarMenu);
 // Mostrar juego y configurar dificultad
 function mostrarJuego() {
   ocultarDivs();
+  
   //document.getElementById("modoJuego").style.display = "block";
   document.getElementById("seleccionar-dificultad").style.display = "inline";
   document.getElementById("game-board").innerHTML = ''; // Limpiar el tablero de juego
@@ -207,8 +208,8 @@ let puntuacion;
 // Generar las cartas de memoria con iconos relacionados con magia y fantasía
 function generarCartas(dificultad) {
   const iconos = [
-    '💎', '🔮', '✨', '🧙‍♂️', '🧩',
-    '🪄', '🦄', '🪙', '🌟', '🦋',
+    '💎', '🔮', '✨', '🧙‍♂️', '🧩', 
+    '🪄', '🦄', '🪙', '🌟', '🦋', 
     '🐉', '🎩', '⚡', '🦊', '🌙'
   ]; // Lista de iconos mágicos y fantásticos
   let cartas = [];
@@ -326,9 +327,9 @@ function terminarJuego(tiempoJuego, puntuacion) {
     .then(response => response.json())
     .then(data => {
       if (data.success) {
-        // Reiniciar la puntuación
-        puntuacion = 0;
-        document.cookie = `idRetoSeleccionado=${idReto}; path=/;`;
+              // Reiniciar la puntuación
+              puntuacion = 0;
+              document.cookie = `idRetoSeleccionado=${idReto}; path=/;`;      
         // Verificar puntuación acumulada
         fetch(`http://localhost:3000/verificar-puntuacion-retos/${idUsuario}`)
           .then(response => response.json())
@@ -454,6 +455,7 @@ function desbloquearSiguienteReto(idReto) {
 
   console.log(`Desbloqueando reto siguiente: ${siguienteReto}`);
 }
+//funcion mostrar retos
 // Función mostrar retos
 function mostrarRetos() {
   ocultarDivs();
@@ -545,7 +547,7 @@ function mostrarRetos() {
     .catch(error => {
       console.error('Error al verificar puntuaciones de retos:', error);
     });
-}
+}     
 
 // Función para seleccionar un reto
 function seleccionarReto(idReto) {
@@ -667,16 +669,16 @@ function mostrarEstadisticas() {
     return;
   }
   let estadisticasDiv = document.getElementById('estadisticas-div');
-  // Cambiar const a let
-  if (estadisticasDiv) {
-    estadisticasDiv.innerHTML = ''; // Limpia el contenido
-    estadisticasDiv.classList.remove('oculto');
-  } else {
-    // Si no existe, créalo
-    estadisticasDiv = document.createElement('div');
-    estadisticasDiv.id = 'estadisticas-div'; // Asigna un id único
-    document.body.appendChild(estadisticasDiv); // Agrega el div al body
-  }
+ // Cambiar const a let
+ if (estadisticasDiv) {
+   estadisticasDiv.innerHTML = ''; // Limpia el contenido
+  estadisticasDiv.classList.remove('oculto');
+ } else {
+   // Si no existe, créalo
+   estadisticasDiv = document.createElement('div');
+   estadisticasDiv.id = 'estadisticas-div'; // Asigna un id único
+   document.body.appendChild(estadisticasDiv); // Agrega el div al body
+ }
 
   crearBotonVolver();
   fetch(`http://localhost:3000/estadisticas/${idUsuario}`)
@@ -768,85 +770,83 @@ function mostrarCompetencias() {
     })
     .catch(error => console.error('Error al obtener competencias:', error));
 }
-
 // Agregar comentario
 function agregarComentario() {
   const idUsuario = getCookie("idUsuario") || null; // Establece null si el usuario no está registrado
   const comentario = document.getElementById("comentarioTexto").value;
 
   if (!comentario) {
-      alert("Por favor, escribe un comentario.");
-      return;
+    alert("Por favor, escribe un comentario.");
+    return;
   }
 
   fetch('http://localhost:3000/comentarios', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ comentario, idUsuario })
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ comentario, idUsuario })
   })
-  .then(response => response.json())
-  .then(data => {
+    .then(response => response.json())
+    .then(data => {
       if (data.success) {
-          alert('Comentario añadido con éxito');
-          document.getElementById("comentarioTexto").value = ""; // Limpia el campo de texto
-          mostrarComentarios(); // Actualiza la lista de comentarios
+        alert('Comentario agregado con éxito');
+        document.getElementById("comentarioTexto").value = ""; // Limpia el campo de texto
       } else {
-          alert('Error al añadir el comentario');
+        alert('Error al agregar el comentario');
       }
-  })
-  .catch(error => console.error('Error:', error));
+    })
+    .catch(error => console.error('Error:', error));
 }
 // Función para mostrar los comentarios
 function mostrarComentarios() {
-    ocultarDivs(); // Oculta otros divs
+  ocultarDivs(); // Oculta otros divs
 
-    const comentariosLista = document.getElementById('comentarios-lista');
-    comentariosLista.classList.remove('oculto'); // Muestra la sección de comentarios
+  const comentariosLista = document.getElementById('comentarios-lista');
+  comentariosLista.classList.remove('oculto'); // Muestra la sección de comentarios
 
-    // Limpiar la lista de comentarios
-    const listaComentarios = document.getElementById('lista-comentarios');
-    listaComentarios.innerHTML = ''; // Limpia la lista
+  // Limpiar la lista de comentarios
+  const listaComentarios = document.getElementById('lista-comentarios');
+  listaComentarios.innerHTML = ''; // Limpia la lista
 
-    // Obtener todos los comentarios desde el servidor
-    fetch(`http://localhost:3000/comentarios`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Error en la respuesta del servidor: ' + response.status);
-            }
-            return response.json();
-        })
-        .then(data => {
-            if (data.success) {
-                data.comentarios.forEach(comentario => {
-                    const li = document.createElement('li');
-                    li.textContent = `${comentario.fecha}: ${comentario.comentario}`;
-                    listaComentarios.appendChild(li);
-                });
-            } else {
-                alert('Error al obtener los comentarios: ' + data.message);
-            }
-        })
-        .catch(error => console.error('Error al obtener comentarios:', error));
+  // Obtener todos los comentarios desde el servidor
+  fetch(`http://localhost:3000/comentarios`)
+      .then(response => {
+          if (!response.ok) {
+              throw new Error('Error en la respuesta del servidor: ' + response.status);
+          }
+          return response.json();
+      })
+      .then(data => {
+          if (data.success) {
+              data.comentarios.forEach(comentario => {
+                  const li = document.createElement('li');
+                  li.textContent = `${comentario.fecha}: ${comentario.comentario}`;
+                  listaComentarios.appendChild(li);
+              });
+          } else {
+              alert('Error al obtener los comentarios: ' + data.message);
+          }
+      })
+      .catch(error => console.error('Error al obtener comentarios:', error));
 }
 
 // Función para cerrar la lista de comentarios
 function cerrarComentarios() {
-  const comentariosLista = document.getElementById('comentarios-lista');
-  comentariosLista.classList.add('oculto'); // Oculta la sección de comentarios
+const comentariosLista = document.getElementById('comentarios-lista');
+comentariosLista.classList.add('oculto'); // Oculta la sección de comentarios
 }
 //función mostrar la guía
 function mostrarGuia() {
-  let guiaDiv = document.getElementById('guia-rapida');
-  if (guiaDiv) {
-    guiaDiv.classList.remove('oculto');
-  }
+let guiaDiv = document.getElementById('guia-rapida');
+if (guiaDiv) {
+  guiaDiv.classList.remove('oculto');
+}
 }
 //funcion cierre de guía
 function cerrarGuia() {
-  let guiaDiv = document.getElementById('guia-rapida');
-  if (guiaDiv) {
-    guiaDiv.classList.add('oculto');
-  }
+let guiaDiv = document.getElementById('guia-rapida');
+if (guiaDiv) {
+  guiaDiv.classList.add('oculto');
+}
 }
 // Llamar a la función de actualización del menú cuando se carga la página
 window.onload = mostrarMenu;

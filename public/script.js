@@ -698,7 +698,7 @@ function mostrarEstadisticas() {
 
         estadisticasDiv.innerHTML = `
                 <h2>Estadísticas de Usuario</h2>
-                <table>
+                <table id="estadisticas-table">
                     <thead>
                         <tr>
                             <th>Fecha</th>

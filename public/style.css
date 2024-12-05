@@ -206,6 +206,21 @@ footer {
   border-radius: 8px;
   text-align: center;
 }
+
+#estadisticas-div{
+  background-color: rgba(252, 183, 245, 0.8);
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+#competencias-div{
+background-color: rgba(252, 183, 245, 0.8);
+padding: 10px;
+border-radius: 8px;
+text-align: center;
+}
+
 .oculto {
   display: none !important;
 }

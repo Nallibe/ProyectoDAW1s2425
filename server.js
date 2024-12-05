@@ -14,9 +14,9 @@ app.use(cors({
 
 // Configuración de la base de datos MySQL
 const db = mysql.createConnection({
-    host: 'localhost',
+    host: 'db',
     user: 'root',
-    password: '',
+    password: 'example',
     database: 'memoria_magica'
 });
 

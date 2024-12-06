@@ -157,22 +157,39 @@ function registrarUsuario() {
     return;
   }
 
-  fetch('http://localhost:3000/registrar-usuario', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ nombre, apellidos, email, contrasena })
-  })
-    .then(response => response.json())
-    .then(data => {
-      if (data.success) {
-        alert('Usuario registrado con éxito');
-        mostrarLogin();
-      } else {
-        alert(data.message);
-      }
-    })
-    .catch(error => console.error('Error al registrar usuario:', error));
-}
+   // Expresión regular para validar la contraseña
+   const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+   if (!regex.test(contrasena)) {
+     alert("La contraseña debe tener al menos 8 caracteres, incluir una mayúscula, una minúscula, un número y un carácter especial.");
+     return;
+   }
+ 
+   // Hashear la contraseña si pasa la validación
+   crypto.subtle.digest('SHA-256', new TextEncoder().encode(contrasena))
+     .then(hashBuffer => {
+       const hashArray = Array.from(new Uint8Array(hashBuffer));
+       const hashedPassword = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
+ 
+       // Enviar datos al servidor
+       fetch('http://localhost:3000/registrar-usuario', {
+         method: 'POST',
+         headers: { 'Content-Type': 'application/json' },
+         body: JSON.stringify({ nombre, apellidos, email, contrasena: hashedPassword })
+       })
+         .then(response => response.json())
+         .then(data => {
+           if (data.success) {
+             alert('Usuario registrado con éxito');
+             mostrarLogin();
+           } else {
+             alert(data.message);
+           }
+         })
+         .catch(error => console.error('Error al registrar usuario:', error));
+     })
+     .catch(err => console.error('Error al hashear la contraseña:', err));
+ }
 
 // Cerrar sesión
 function cerrarSesion() {
